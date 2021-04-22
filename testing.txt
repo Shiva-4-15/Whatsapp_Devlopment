@@ -1,5 +1,7 @@
                                                         Automation testing
 
+first document of gitHub
+
 Required platform:
     
            1) JAVA
