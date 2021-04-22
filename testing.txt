@@ -1,6 +1,7 @@
                                                         Automation testing
 
 first document of gitHub
+test cases added
 
 Required platform:
     
