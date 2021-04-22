@@ -1,0 +1,595 @@
+                                                        Automation testing
+
+Required platform:
+    
+           1) JAVA
+           2) selenium
+
+integrated development Environment:
+           
+           1) InteliG
+
+what reason using automation..?
+           
+       * The rapid level test execution.
+
+parameter:
+      
+       * here is five parameters.
+         
+         1) ID
+         2) Name
+         3) ClassName
+         4) X-path
+         5) CSS (style property)
+
+text boxes:
+         
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class OpenGoogle {
+    public static void main(String[] args){
+
+       System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+       WebDriver driver = new ChromeDriver();
+
+       driver.get("http://leafground.com/pages/Edit.html");
+
+           WebElement emailBox = driver.findElement(By.id("email"));
+           emailBox.sendKeys("siva628703@gmail.com");
+
+           WebElement appendBox = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[2]/div/div/input"));
+           appendBox.sendKeys("hi Shiva");
+
+           WebElement enteredText = driver.findElement(By.name("username"));
+           String value = enteredText.getAttribute("value");
+           System.out.println(value);
+
+           WebElement clearBox = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[4]/div/div/input"));
+           clearBox.clear();
+
+           WebElement desibleBox = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[5]/div/div/input"));
+           boolean enabled = desibleBox.isEnabled();
+           System.out.println(enabled);
+
+
+    }
+}
+
+
+Button:
+ 
+
+       
+package selenium;
+
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class button {
+    public static void main(String[] args){
+
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/Button.html");
+
+        WebElement getPositionButton = driver.findElement(By.id("position"));
+        Point xypoint = getPositionButton.getLocation();
+        int x = xypoint.getX();
+        int y = xypoint.getY();
+        System.out.println("'X' value is "+x+" and 'Y' value is "+y);
+
+        WebElement buttenColor = driver.findElement(By.id("color"));
+        String color = buttenColor.getCssValue("background-color");
+        System.out.println("Button color is "+color);
+
+        WebElement buttonSize = driver.findElement(By.id("size"));
+        int height = buttonSize.getSize().getHeight();
+        int width = buttonSize.getSize().getWidth();
+        System.out.println("Height is "+height +"and Width is "+width);
+
+        WebElement homeButton = driver.findElement(By.id("home"));
+        homeButton.click();
+    }
+}
+
+
+dropdown:
+
+
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import java.awt.*;
+import java.util.List;
+
+import static java.lang.Thread.*;
+
+public class dropdown {
+    public static void main(String[] args){
+
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/Dropdown.html");
+
+        WebElement dropDown1 = driver.findElement(By.id("dropdown1"));
+        Select selectType1 = new Select(dropDown1);
+        selectType1.selectByIndex(1);
+
+        WebElement dropDown2 = driver.findElement(By.name("dropdown2"));
+        Select selectType2 = new Select(dropDown2);
+        selectType2.selectByVisibleText("UFT/QTP");
+
+        WebElement dropDown3 = driver.findElement(By.id("dropdown3"));
+        Select selectType3 = new Select(dropDown3);
+        selectType3.selectByValue("2");
+
+        WebElement multiSelect = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[6]/select"));
+        Select multiSelectBox = new Select(multiSelect);
+        multiSelectBox.selectByIndex(1);
+        multiSelectBox.selectByIndex(2);
+        multiSelectBox.selectByIndex(3);
+
+        List<WebElement> options = selectType3.getOptions();
+        int size = options.size();
+        System.out.println("Number of elements: "+size);
+
+        dropDown1.sendKeys("Loadrunner");
+    }
+}
+
+
+alarts:
+
+
+
+package selenium;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class alarts {
+    public static void main(String[] args) {
+
+       System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+       WebDriver driver = new ChromeDriver();
+
+       driver.get("http://leafground.com/pages/Alert.html");
+
+       WebElement alertBox1 = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[1]/div/div/button"));
+       alertBox1.click();
+       Alert popUp1 = driver.switchTo().alert();
+       popUp1.accept();
+
+       WebElement alertBox2 = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[2]/div/div/button"));
+       alertBox2.click();
+       Alert popUp2 = driver.switchTo().alert();
+       popUp2.dismiss();
+
+       WebElement alertBox3 = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[3]/div/div/button"));
+       alertBox3.click();;
+       Alert popUp3 = driver.switchTo().alert();
+       popUp3.sendKeys("i'm back..!");
+       popUp3.accept();
+
+    }
+}
+
+
+
+
+radio button:
+
+
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class radioButton {
+    public static void main(String[] args) {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/radio.html");
+
+        WebElement unChecked = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[2]/div/div/label[2]/input"));
+        WebElement checked   = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[2]/div/div/label[3]/input"));
+        boolean selected1 = unChecked.isSelected();
+        boolean selected2 = checked.isSelected();
+        System.out.println(selected1);
+        System.out.println(selected2);
+
+        WebElement below20 = driver.findElement((By.name("age")));
+        below20.click();
+
+    }
+}
+
+
+
+
+checkboxes:
+
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class checkbox {
+    public static void main(String[] args) {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/checkbox.html");
+
+        WebElement java = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[1]/div[1]/input"));
+        java.click();
+        WebElement SQL = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[1]/div[3]/input"));
+        SQL.click();
+
+        WebElement checkIsClicked = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[1]/div[3]/input"));
+        boolean selected = checkIsClicked.isSelected();
+        System.out.println(selected);
+
+        WebElement firstElement = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[3]/div[1]/input"));
+        if (firstElement.isSelected()){
+            firstElement.click();
+        }
+        else {
+            firstElement.click();
+        }
+        WebElement secondElement = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[3]/div[2]/input"));
+        if (secondElement.isSelected()){
+            secondElement.click();
+        }
+        else {
+            secondElement.click();
+        }
+    }
+
+}
+
+
+download file
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
+
+public class downloadFile {
+    public static void  main (String[] args) throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/download.html");
+        WebElement downloadFile = driver.findElement(By.linkText("Download Excel"));
+        downloadFile.click();
+        Thread.sleep(500);
+        File fileLocation = new File("C:\\Users\\shiva\\Downloads");
+        File[] totalFiles = fileLocation.listFiles();
+        for (File file : totalFiles) {
+            if (file.getName().equals("testleaf.xlsx")){
+                System.out.println("File is downloaded");
+                break;
+            }
+        }
+    }
+}
+
+
+upload file
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.awt.Robot;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+
+
+public class uploadFile {
+    public static void main (String[] args) throws AWTException, InterruptedException {
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/upload.html");
+        Thread.sleep(500);
+        WebElement uploadButton = driver.findElement(By.xpath("//*[@id='mydiv']/input"));
+        Thread.sleep(500);
+        uploadButton.click();
+        //windows
+        /*String file = "C:\\Users\\shiva\\Downloads\\testleaf.xlsx";
+        StringSelection selection = new StringSelection(file);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection,null);
+
+        Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_CONTROL);  //VK means virtual key.
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);*/
+
+    }
+}
+
+
+image
+
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class intrcImg {
+    public static void main(String[] args){
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://www.leafground.com/pages/Image.html");
+
+
+        WebElement firstImage = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[1]/div/div/img"));
+        firstImage.click();
+
+        WebElement pictureButton = driver.findElement(By.xpath("//*[@id='post-153']/div[2]/div/ul/li[4]/a"));
+        pictureButton.click();
+        WebElement secondImage = driver.findElement(By.xpath("//*[@id='contentblock']/section/div[2]/div/div/img"));
+        if (secondImage.getAttribute("naturalWidth").equals("0")){
+            System.out.println("The image id broken.");
+        }
+        else{
+            System.out.println("image is not broken.");
+        }
+    }
+}
+
+
+
+hyperlink
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
+
+public class hyperLinks {
+    public static void main (String[] args){
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.navigate().to("http://www.leafground.com/pages/Link.html");
+
+        WebElement homePageLink = driver.findElement(By.linkText("Go to Home Page"));
+        homePageLink.click();
+        driver.navigate().back();
+
+        WebElement linkDestination = driver.findElement(By.partialLinkText("to go without clicking"));
+        String href = linkDestination.getAttribute("href");
+        System.out.println("This link is going to "+href);
+
+        WebElement brockOrNot = driver.findElement(By.linkText("Verify am I broken?"));
+        brockOrNot.click();
+        String title = driver.getTitle();
+        if(title.contains("404")){
+            System.out.println("This link is broken.");
+        }
+        else{
+            System.out.println("This link is not broken.");
+        }
+        driver.navigate().back();
+
+        WebElement homePageLink2 = driver.findElement(By.linkText("Go to Home Page"));
+        homePageLink2.click();
+        driver.navigate().back();
+
+        List<WebElement> totalLink = driver.findElements(By.tagName("a"));
+        int size = totalLink.size();
+        System.out.println("Total number of links :"+size);
+    }
+}
+
+
+tables
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class tables {
+    public static void main (String[] args){
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.navigate().to("http://www.leafground.com/pages/table.html");
+
+        List<WebElement> columns = driver.findElements(By.tagName("th"));
+        int columnCounts = columns.size();
+        System.out.println("Number of columns "+columnCounts);
+
+        List<WebElement> rows = driver.findElements(By.tagName("tr"));
+        int rowsCounts = rows.size();
+        System.out.println("Number of rows "+rowsCounts);
+
+        WebElement progressValue = driver.findElement(By.xpath("//td[normalize-space()='Learn to interact with Elements']//following::td[1]"));
+        String value = progressValue.getText();
+        System.out.println("Progress value "+value);
+
+        List<WebElement> proValue = driver.findElements(By.xpath("//td[2]"));
+        ArrayList<Integer> numberList = new ArrayList<>();
+        for (WebElement webelement : proValue) {
+            String indivitualValue = webelement.getText().replace("%","");
+            numberList.add(Integer.parseInt(indivitualValue));
+        }
+        System.out.println("final list "+numberList);
+        int smallValue = Collections.min(numberList);
+        System.out.println(smallValue);
+        String smallValueString = Integer.toString(smallValue)+'%';
+        String finalXpath = "//td[normalize-space()="+"\""+ smallValueString+"\""+"]"+"//following::td[1]";
+        System.out.println(finalXpath);
+        WebElement check = driver.findElement(By.xpath(finalXpath));
+        check.click();
+    }
+}
+
+
+calander
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class calender {
+    public static void main (String[] args){
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.navigate().to("http://www.leafground.com/pages/Calendar.html");
+        WebElement calender = driver.findElement(By.id("datepicker"));
+        //calender.sendKeys("10/04/1999");
+
+        //*[@id="ui-datepicker-div"]/div/a[2]/span
+        calender.click();
+        WebElement nextButton = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/div/a[2]/span"));
+        nextButton.click();
+        WebElement tenthDate = driver.findElement(By.xpath("//*[@id='ui-datepicker-div']/table/tbody/tr[2]/td[3]/a"));
+        tenthDate.click();
+
+    }
+}
+
+
+sortable
+
+import java.util.List;
+
+public class sortable {
+    public static void main (String[] args){
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.navigate().to("http://www.leafground.com/pages/sortable.html");
+
+        List<WebElement> elements = driver.findElements(By.xpath("//*[@id='sortable']/li"));
+        WebElement from = elements.get(6);
+        WebElement to = elements.get(0);
+        Actions actions = new Actions(driver);
+
+        actions.dragAndDrop(from,to).build().perform();
+
+
+    }
+}
+
+
+drag and drop
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class dragAndDrop {
+    public static void main(String[] args) {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/drop.html");
+        WebElement from = driver.findElement(By.id("draggable"));
+        WebElement   to = driver.findElement(By.id("droppable"));
+        Actions actions = new Actions(driver);
+        //dragAndDrop.clickAndHold(from).moveToElement(to).release(to).build().perform();
+        actions.dragAndDrop(from,to).build().perform();
+    }
+}
+
+
+download file
+
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.io.File;
+
+public class downloadFile {
+    public static void  main (String[] args) throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver_win32 (1)\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("http://leafground.com/pages/download.html");
+        WebElement downloadFile = driver.findElement(By.linkText("Download Excel"));
+        downloadFile.click();
+        Thread.sleep(500);
+        File fileLocation = new File("C:\\Users\\shiva\\Downloads");
+        File[] totalFiles = fileLocation.listFiles();
+        for (File file : totalFiles) {
+            if (file.getName().equals("testleaf.xlsx")){
+                System.out.println("File is downloaded");
+                break;
+            }
+        }
+    }
+}
+
+
+
